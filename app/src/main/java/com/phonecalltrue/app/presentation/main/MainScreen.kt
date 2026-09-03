@@ -1,5 +1,6 @@
 package com.phonecalltrue.app.presentation.main
 
+import android.content.Intent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -9,8 +10,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,12 +28,12 @@ import com.phonecalltrue.app.presentation.contacts.ContactsScreen
 import com.phonecalltrue.app.presentation.noads.NoAdsScreen
 import com.phonecalltrue.app.presentation.recents.RecentsScreen
 import com.phonecalltrue.app.presentation.region.RegionScreen
-import com.phonecalltrue.app.ui.components.AdBanner
 import com.phonecalltrue.app.ui.components.AppDrawerContent
 import com.phonecalltrue.app.ui.components.BottomNavigationBar
 import com.phonecalltrue.app.ui.components.BottomTab
 import com.phonecalltrue.app.ui.components.FloatingDialPadButton
 import com.phonecalltrue.app.ui.components.HomeTopBar
+import com.phonecalltrue.app.ui.components.RateUsDialog
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,6 +42,8 @@ fun MainScreen(outerNavController: NavHostController, viewModel: AppViewModel) {
     val innerNavController = rememberNavController()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+    var showRateUs by remember { mutableStateOf(false) }
 
     val backStackEntry by innerNavController.currentBackStackEntryAsState()
     val currentTab = BottomTab.entries.firstOrNull { it.route == backStackEntry?.destination?.route } ?: BottomTab.RECENTS
@@ -49,8 +56,15 @@ fun MainScreen(outerNavController: NavHostController, viewModel: AppViewModel) {
             AppDrawerContent(
                 onCallBlocking = { scope.launch { drawerState.close() }; outerNavController.navigate(Routes.CALL_BLOCKING) },
                 onBackup = { scope.launch { drawerState.close() }; outerNavController.navigate(Routes.BACKUP) },
-                onShareCallerId = { scope.launch { drawerState.close() } },
-                onRateUs = { scope.launch { drawerState.close() } },
+                onShareCallerId = {
+                    scope.launch { drawerState.close() }
+                    val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_TEXT, "Check out Phone Call True — Enhanced Caller ID & spam protection: https://play.google.com/store/apps/details?id=com.phonecalltrue.app")
+                    }
+                    context.startActivity(Intent.createChooser(sendIntent, "Share Caller ID"))
+                },
+                onRateUs = { scope.launch { drawerState.close() }; showRateUs = true },
                 onSettings = { scope.launch { drawerState.close() }; outerNavController.navigate(Routes.SETTINGS) }
             )
         }
@@ -109,5 +123,23 @@ fun MainScreen(outerNavController: NavHostController, viewModel: AppViewModel) {
                 }
             }
         }
+    }
+
+    if (showRateUs) {
+        RateUsDialog(
+            onRateNow = { _ ->
+                showRateUs = false
+                viewModel.setRateUsDismissed(true)
+                val marketIntent = Intent(
+                    Intent.ACTION_VIEW,
+                    android.net.Uri.parse("market://details?id=com.phonecalltrue.app")
+                )
+                runCatching { context.startActivity(marketIntent) }
+            },
+            onMaybeLater = {
+                showRateUs = false
+                viewModel.setRateUsDismissed(true)
+            }
+        )
     }
 }

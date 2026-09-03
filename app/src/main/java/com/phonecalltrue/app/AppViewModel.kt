@@ -44,6 +44,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun setLanguageCode(code: String) = viewModelScope.launch { repository.setLanguageCode(code) }
     fun setPremiumActive(active: Boolean) = viewModelScope.launch { repository.setPremiumActive(active) }
     fun setPrivacyToggle(key: PrivacyToggle, value: Boolean) = viewModelScope.launch { repository.setPrivacyToggle(key, value) }
+    fun setRateUsDismissed(dismissed: Boolean) = viewModelScope.launch { repository.setRateUsDismissed(dismissed) }
 
     fun blockNumber(blocked: BlockedNumber) = viewModelScope.launch { repository.blockNumber(blocked) }
     fun unblockNumber(id: String) = viewModelScope.launch { repository.unblockNumber(id) }

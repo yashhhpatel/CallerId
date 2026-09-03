@@ -1,6 +1,8 @@
 package com.phonecalltrue.app.presentation.onboarding
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,8 +16,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Phone
-import androidx.compose.material.icons.filled.ReportProblem
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.VerifiedUser
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -72,43 +74,51 @@ fun CallerIdIntroScreen(onAccept: () -> Unit, onDecline: () -> Unit) {
 private fun MockIncomingCallCard() {
     Box(
         modifier = Modifier
-            .size(220.dp)
+            .size(240.dp)
             .background(MaterialTheme.colorScheme.surfaceVariant, CircleShape),
         contentAlignment = Alignment.Center
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth(0.78f)
-                .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(16.dp))
-                .padding(AppDimens.spaceM)
-        ) {
-            Text("(889) 953-7072", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
-            Text("Incoming call", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(top = AppDimens.spaceS)
-            ) {
-                Box(
-                    modifier = Modifier.size(28.dp).background(SpamRed, CircleShape),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(Icons.Filled.ReportProblem, contentDescription = null, tint = Color.White, modifier = Modifier.size(16.dp))
-                }
-                Column(modifier = Modifier.padding(start = AppDimens.spaceXS)) {
-                    Text("Telemarketing", style = MaterialTheme.typography.labelLarge, color = SpamRed)
-                    Text("3281 Reports", style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-            }
-        }
+        // Phone silhouette with the incoming-call text on its "screen"
         Box(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .offset(y = 18.dp)
-                .size(56.dp)
-                .background(MaterialTheme.colorScheme.primary, CircleShape),
-            contentAlignment = Alignment.Center
+                .size(width = 132.dp, height = 220.dp)
+                .border(BorderStroke(10.dp, Color(0xFF1B1D22)), RoundedCornerShape(28.dp))
+                .background(Color(0xFF6B7280), RoundedCornerShape(18.dp))
+                .padding(top = AppDimens.spaceL),
+            contentAlignment = Alignment.TopCenter
         ) {
-            Icon(Icons.Filled.Phone, contentDescription = null, tint = Color.White)
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    "(889) 953-7072",
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+                Text("Incoming call", style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = 0.85f))
+            }
+        }
+
+        // Caller-info card overlapping the bottom of the phone
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .offset(y = (-36).dp)
+                .fillMaxWidth(0.88f)
+                .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(14.dp))
+                .padding(AppDimens.spaceS),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+                modifier = Modifier.size(36.dp).background(SpamRed.copy(alpha = 0.15f), CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(Icons.Filled.Face, contentDescription = null, tint = SpamRed, modifier = Modifier.size(20.dp))
+            }
+            Column(modifier = Modifier.weight(1f).padding(start = AppDimens.spaceXS)) {
+                Text("Telemarketing", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                Text("3281 Reports", style = MaterialTheme.typography.labelSmall, color = SpamRed)
+            }
+            Icon(Icons.Filled.VerifiedUser, contentDescription = "Verified by Phone Call True", tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(22.dp))
         }
     }
 }

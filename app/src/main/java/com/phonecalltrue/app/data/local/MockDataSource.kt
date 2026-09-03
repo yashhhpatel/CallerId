@@ -101,7 +101,8 @@ object MockDataSource {
         RegionStat("hr", "Haryana", 3),
         RegionStat("ker", "Kerala", 3),
         RegionStat("ct", "Chhattisgarh", 2),
-        RegionStat("jh", "Jharkhand", 1)
+        RegionStat("jh", "Jharkhand", 1),
+        RegionStat("other", "Other", 74)
     )
 
     fun regionCityBreakdown(regionId: String): List<RegionStat> {

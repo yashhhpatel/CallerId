@@ -23,7 +23,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.phonecalltrue.app.ui.components.PrimaryButton
-import com.phonecalltrue.app.ui.components.SecondaryButton
 import com.phonecalltrue.app.ui.theme.AppDimens
 
 @Composable
@@ -101,7 +100,7 @@ fun PrivacyOnboardingScreen(onAccept: () -> Unit, onDecline: () -> Unit) {
             },
             modifier = Modifier.fillMaxWidth().padding(top = AppDimens.spaceM)
         )
-        SecondaryButton(
+        PrimaryButton(
             text = "DECLINE",
             onClick = onDecline,
             modifier = Modifier.fillMaxWidth().padding(top = AppDimens.spaceS, bottom = AppDimens.spaceL)

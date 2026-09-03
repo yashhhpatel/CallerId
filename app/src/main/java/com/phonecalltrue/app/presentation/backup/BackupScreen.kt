@@ -61,7 +61,33 @@ fun BackupScreen(onBack: () -> Unit) {
                 },
                 modifier = Modifier.padding(top = AppDimens.spaceL)
             )
+
+            Text(
+                text = "Google Drive Settings",
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(top = AppDimens.spaceXL, bottom = AppDimens.spaceXS)
+            )
+            Text(
+                text = "Here are some options for individuals on how you can back up your data to Google Drive.",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            InfoRow(label = "Google Drive account", value = "Choose Account")
+            InfoRow(label = "Backup frequency", value = "Never")
+            InfoRow(label = "Back up over", value = "Wi-Fi")
         }
+    }
+}
+
+@Composable
+private fun InfoRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(vertical = AppDimens.spaceS),
+        horizontalArrangement = androidx.compose.foundation.layout.Arrangement.SpaceBetween
+    ) {
+        Text(label, style = MaterialTheme.typography.bodyMedium)
+        Text(value, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
 

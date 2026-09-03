@@ -1,5 +1,9 @@
 package com.phonecalltrue.app.presentation.onboarding
 
+import android.Manifest
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
@@ -21,11 +25,25 @@ fun LanguageOnboardingScreen(
     onLanguageSelected: (String) -> Unit,
     onConfirm: () -> Unit
 ) {
+    // Real Android runtime permission requests — shown as native system dialogs,
+    // matching the reference video's call-log / contacts / notifications prompts.
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestMultiplePermissions()
+    ) { onConfirm() }
+
+    val requestedPermissions = buildList {
+        add(Manifest.permission.READ_CALL_LOG)
+        add(Manifest.permission.READ_CONTACTS)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            add(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }.toTypedArray()
+
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
             title = { Text("Languages", style = MaterialTheme.typography.titleLarge) },
             actions = {
-                IconButton(onClick = onConfirm) {
+                IconButton(onClick = { permissionLauncher.launch(requestedPermissions) }) {
                     Icon(Icons.Filled.Check, contentDescription = "Confirm language")
                 }
             }
