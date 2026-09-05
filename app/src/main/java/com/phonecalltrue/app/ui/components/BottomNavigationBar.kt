@@ -17,7 +17,7 @@ import com.phonecalltrue.app.navigation.Routes
 enum class BottomTab(val route: String, val label: String) {
     RECENTS(Routes.RECENTS, "Recents"),
     CONTACTS(Routes.CONTACTS, "Contacts"),
-    NO_ADS(Routes.NO_ADS, "No Ads"),
+    NO_ADS(Routes.NO_ADS, "No Ad's"),
     REGION(Routes.REGION, "Region")
 }
 

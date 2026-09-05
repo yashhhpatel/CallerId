@@ -1,5 +1,6 @@
 package com.phonecalltrue.app.presentation.contacts
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +12,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Contacts
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -86,7 +89,19 @@ fun ContactsScreen(
             Row(modifier = Modifier.weight(1f)) {
                 LazyColumn(state = listState, modifier = Modifier.weight(1f)) {
                     if (showFavorites) {
-                        item(key = "favorites_header") { SectionHeader(title = "Your Favorites") }
+                        item(key = "favorites_header") {
+                            Row(
+                                modifier = Modifier.fillMaxWidth().padding(horizontal = AppDimens.spaceM, vertical = AppDimens.spaceXS),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    "Your Favorites",
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                                TextButton(onClick = {}) { Text("EDIT", style = MaterialTheme.typography.labelMedium) }
+                            }
+                        }
                         items(favorites, key = { "fav_${it.id}" }) { contact ->
                             ContactItem(contact = contact, onClick = { onContactClick(contact.phoneNumber) }, onCallClick = { onContactClick(contact.phoneNumber) })
                         }

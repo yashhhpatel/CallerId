@@ -54,7 +54,8 @@ fun PhoneCallTrueNavHost(viewModel: AppViewModel) {
         composable(Routes.ONBOARDING_CALLER_ID) {
             CallerIdIntroScreen(
                 onAccept = { navController.navigate(Routes.ONBOARDING_PRIVACY) },
-                onDecline = { navController.navigate(Routes.MAIN) { popUpTo(0) } }
+                onDecline = { navController.navigate(Routes.MAIN) { popUpTo(0) } },
+                onOpenPrivacyPolicy = { navController.navigate(Routes.PRIVACY_POLICY) }
             )
         }
         composable(Routes.ONBOARDING_PRIVACY) {

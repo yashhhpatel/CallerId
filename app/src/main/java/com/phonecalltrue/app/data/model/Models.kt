@@ -67,10 +67,11 @@ val AVAILABLE_LANGUAGES = listOf(
     AppLanguage("en", "English", "🇬🇧"),
     AppLanguage("zh", "Chinese", "🇨🇳"),
     AppLanguage("hi", "Hindi", "🇮🇳"),
-    AppLanguage("bn", "Bengali", "🇧🇩"),
-    AppLanguage("ru", "Russian", "🇷🇺"),
-    AppLanguage("pt", "Portuguese", "🇵🇹"),
     AppLanguage("fr", "French", "🇫🇷"),
     AppLanguage("ar", "Arabic", "🇦🇪"),
-    AppLanguage("it", "Italian", "🇮🇹")
+    AppLanguage("it", "Italian", "🇮🇹"),
+    AppLanguage("es", "Spanish", "🇪🇸"),
+    AppLanguage("bn", "Bengali", "🇧🇩"),
+    AppLanguage("ru", "Russian", "🇷🇺"),
+    AppLanguage("pt", "Portuguese", "🇵🇹")
 )

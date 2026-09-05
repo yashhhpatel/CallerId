@@ -46,6 +46,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun setPrivacyToggle(key: PrivacyToggle, value: Boolean) = viewModelScope.launch { repository.setPrivacyToggle(key, value) }
     fun setRateUsDismissed(dismissed: Boolean) = viewModelScope.launch { repository.setRateUsDismissed(dismissed) }
 
+    fun addContact(name: String, phoneNumber: String) = repository.addContact(name, phoneNumber)
     fun blockNumber(blocked: BlockedNumber) = viewModelScope.launch { repository.blockNumber(blocked) }
     fun unblockNumber(id: String) = viewModelScope.launch { repository.unblockNumber(id) }
 

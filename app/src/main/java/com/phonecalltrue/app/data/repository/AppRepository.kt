@@ -37,6 +37,17 @@ class AppRepository(context: Context) {
     private val _contacts = MutableStateFlow(MockDataSource.generateContacts())
     val contacts: StateFlow<List<Contact>> = _contacts.asStateFlow()
 
+    fun addContact(name: String, phoneNumber: String) {
+        val contact = Contact(
+            id = "contact_${System.currentTimeMillis()}",
+            name = name,
+            phoneNumber = phoneNumber,
+            avatarColorSeed = name.hashCode(),
+            isFavorite = false
+        )
+        _contacts.value = (_contacts.value + contact).sortedBy { it.name }
+    }
+
     private val _regions = MutableStateFlow(MockDataSource.generateRegionStats())
     val regions: StateFlow<List<RegionStat>> = _regions.asStateFlow()
 
