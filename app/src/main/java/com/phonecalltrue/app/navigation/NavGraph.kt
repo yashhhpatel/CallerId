@@ -31,7 +31,6 @@ import com.phonecalltrue.app.presentation.settings.PrivacyPolicyScreen
 import com.phonecalltrue.app.presentation.settings.PrivacySettingsScreen
 import com.phonecalltrue.app.presentation.settings.SettingsScreen
 import com.phonecalltrue.app.presentation.settings.ThemeSettingsScreen
-import java.net.URLDecoder
 
 @Composable
 fun PhoneCallTrueNavHost(viewModel: AppViewModel) {
@@ -120,10 +119,12 @@ fun PhoneCallTrueNavHost(viewModel: AppViewModel) {
             Routes.CALLER_DETAILS,
             arguments = listOf(navArgument("phoneNumber") { type = NavType.StringType })
         ) { entry ->
-            val encoded = entry.arguments?.getString("phoneNumber").orEmpty()
+            // Navigation Compose already URL-decodes String path arguments; decoding
+            // again here would double-unescape the "+" in Indian phone numbers.
+            val phoneNumber = entry.arguments?.getString("phoneNumber").orEmpty()
             CallerDetailsScreen(
                 viewModel = viewModel,
-                phoneNumber = URLDecoder.decode(encoded, "UTF-8"),
+                phoneNumber = phoneNumber,
                 onBack = { navController.popBackStack() }
             )
         }

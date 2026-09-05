@@ -1,5 +1,7 @@
 package com.phonecalltrue.app.navigation
 
+import android.net.Uri
+
 object Routes {
     const val SPLASH = "splash"
 
@@ -17,12 +19,13 @@ object Routes {
     const val NO_ADS = "no_ads"
     const val REGION = "region"
     const val REGION_DETAIL = "region/{regionId}/{regionName}"
-    fun regionDetail(regionId: String, regionName: String) = "region/$regionId/$regionName"
+    fun regionDetail(regionId: String, regionName: String) =
+        "region/${Uri.encode(regionId)}/${Uri.encode(regionName)}"
 
     const val IDENTIFIED_NUMBERS = "identified_numbers"
     const val SEARCH = "search"
     const val CALLER_DETAILS = "caller_details/{phoneNumber}"
-    fun callerDetails(phoneNumber: String) = "caller_details/${java.net.URLEncoder.encode(phoneNumber, "UTF-8")}"
+    fun callerDetails(phoneNumber: String) = "caller_details/${Uri.encode(phoneNumber)}"
     const val DIAL_PAD = "dial_pad"
 
     // Drawer

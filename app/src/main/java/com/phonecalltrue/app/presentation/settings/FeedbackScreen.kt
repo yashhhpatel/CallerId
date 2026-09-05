@@ -2,6 +2,8 @@ package com.phonecalltrue.app.presentation.settings
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,12 +48,17 @@ fun FeedbackScreen(userEmail: String, onBack: () -> Unit) {
             }
 
             Text("Feedback type", style = MaterialTheme.typography.titleSmall)
-            Row(modifier = Modifier.padding(top = AppDimens.spaceS)) {
+            Row(
+                modifier = Modifier
+                    .padding(top = AppDimens.spaceS)
+                    .horizontalScroll(rememberScrollState())
+            ) {
                 feedbackTypes.forEach { type ->
                     val selected = type == selectedType
                     Text(
                         text = type,
                         style = MaterialTheme.typography.labelMedium,
+                        softWrap = false,
                         color = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier
                             .padding(end = AppDimens.spaceXS)

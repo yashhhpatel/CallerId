@@ -61,7 +61,9 @@ fun CallerDetailsScreen(
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.padding(top = AppDimens.spaceM)
             )
-            Text(phoneNumber, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            if (result?.name != null) {
+                Text(phoneNumber, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
             Row(modifier = Modifier.padding(top = AppDimens.spaceS)) {
                 SpamBadge(category = result?.category ?: SpamCategory.UNKNOWN)
             }

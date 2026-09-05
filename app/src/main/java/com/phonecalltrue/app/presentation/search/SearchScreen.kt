@@ -101,7 +101,9 @@ fun SearchScreen(
                         InitialsAvatar(name = result.name, seed = result.phoneNumber.hashCode())
                         Column(modifier = Modifier.padding(start = AppDimens.spaceM)) {
                             Text(result.name ?: result.phoneNumber, style = MaterialTheme.typography.titleMedium)
-                            Text(result.phoneNumber, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            if (result.name != null) {
+                                Text(result.phoneNumber, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            }
                         }
                     }
                     Row(modifier = Modifier.padding(top = AppDimens.spaceS)) {

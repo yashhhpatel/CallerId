@@ -1,6 +1,7 @@
 package com.phonecalltrue.app.presentation.main
 
 import android.content.Intent
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -49,6 +50,12 @@ fun MainScreen(outerNavController: NavHostController, viewModel: AppViewModel) {
     val currentTab = BottomTab.entries.firstOrNull { it.route == backStackEntry?.destination?.route } ?: BottomTab.RECENTS
 
     val premiumActive by viewModel.premiumActive.collectAsStateWithLifecycle()
+
+    // System back should close the drawer when it's open, rather than falling
+    // through to the Activity and exiting the app.
+    BackHandler(enabled = drawerState.isOpen) {
+        scope.launch { drawerState.close() }
+    }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
