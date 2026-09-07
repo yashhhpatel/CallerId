@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -56,6 +57,12 @@ fun AccountScreen(userEmail: String, onBack: () -> Unit) {
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier.padding(top = AppDimens.spaceXL)
                 )
+                Text(
+                    text = "Connect Caller ID account with other service to login in easily.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 2.dp)
+                )
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(top = AppDimens.spaceS),
                     horizontalArrangement = androidx.compose.foundation.layout.Arrangement.SpaceBetween
@@ -65,11 +72,24 @@ fun AccountScreen(userEmail: String, onBack: () -> Unit) {
                 }
 
                 SecondaryButton(text = "Log out", onClick = { signedIn = false }, modifier = Modifier.padding(top = AppDimens.spaceXL))
+
+                Text(
+                    text = "Remove Account",
+                    style = MaterialTheme.typography.titleSmall,
+                    modifier = Modifier.padding(top = AppDimens.spaceXL)
+                )
+                Text(
+                    text = "All data related to your accounts will be deleted.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 2.dp, bottom = AppDimens.spaceS)
+                )
                 androidx.compose.material3.Button(
                     onClick = { showDeleteConfirm = true },
                     colors = androidx.compose.material3.ButtonDefaults.buttonColors(containerColor = SpamRed),
-                    modifier = Modifier.fillMaxWidth().padding(top = AppDimens.spaceS)
+                    modifier = Modifier.fillMaxWidth()
                 ) {
+                    Icon(Icons.Filled.DeleteForever, contentDescription = null, modifier = Modifier.padding(end = AppDimens.spaceXS).size(18.dp))
                     Text("Delete Account")
                 }
             } else {

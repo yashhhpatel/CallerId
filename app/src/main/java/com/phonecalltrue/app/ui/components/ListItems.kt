@@ -146,7 +146,7 @@ fun RegionItem(
             .padding(horizontal = AppDimens.spaceM, vertical = AppDimens.spaceS),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        InitialsAvatar(name = region.name, seed = region.id.hashCode(), size = AppDimens.avatarSizeS)
+        LetterAvatar(name = region.name, seed = region.id.hashCode(), size = AppDimens.avatarSizeS)
         Text(
             text = region.name,
             style = MaterialTheme.typography.bodyLarge,

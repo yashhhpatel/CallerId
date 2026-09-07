@@ -12,7 +12,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Backup
+import androidx.compose.material.icons.filled.Headset
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.PersonSearch
+import androidx.compose.material.icons.filled.PhoneDisabled
+import androidx.compose.material.icons.filled.Shield
+import androidx.compose.material.icons.filled.VolumeOff
 import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -79,15 +85,15 @@ fun NoAdsScreen(viewModel: AppViewModel, premiumActive: Boolean) {
 
         Column(modifier = Modifier.fillMaxWidth().padding(top = AppDimens.spaceL)) {
             listOf(
-                "See who is calling even before they call",
-                "Advanced call blocking options",
-                "Backup/Restore Contact",
-                "Unlock all features",
-                "No ads interruption",
-                "24/7 customer support"
-            ).forEach { feature ->
+                Icons.Filled.PersonSearch to "See who is calling even before they call",
+                Icons.Filled.PhoneDisabled to "Advanced call blocking options",
+                Icons.Filled.Backup to "Backup/Restore Contact",
+                Icons.Filled.Lock to "Unlock all features",
+                Icons.Filled.VolumeOff to "No ads interruption",
+                Icons.Filled.Headset to "24/7 customer support"
+            ).forEach { (icon, feature) ->
                 Row(modifier = Modifier.padding(vertical = 6.dp)) {
-                    Icon(Icons.Filled.Check, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(20.dp))
+                    Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(20.dp))
                     Text(feature, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(start = AppDimens.spaceS))
                 }
             }
@@ -122,10 +128,22 @@ fun NoAdsScreen(viewModel: AppViewModel, premiumActive: Boolean) {
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(top = AppDimens.spaceS)
         )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(top = AppDimens.spaceXS)
+        ) {
+            Icon(Icons.Filled.Shield, contentDescription = null, tint = MaterialTheme.colorScheme.onSurface, modifier = Modifier.size(16.dp))
+            Text(
+                text = "Cancel anytime. Secure with Play Store",
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.padding(start = AppDimens.spaceXS)
+            )
+        }
 
         Row(modifier = Modifier.padding(top = AppDimens.spaceM, bottom = AppDimens.spaceL)) {
             TextActionButton(text = "Restore", onClick = {})
-            TextActionButton(text = "Terms", onClick = {})
+            TextActionButton(text = "Terms & conditions", onClick = {})
             TextActionButton(text = "Privacy Policy", onClick = {})
         }
     }

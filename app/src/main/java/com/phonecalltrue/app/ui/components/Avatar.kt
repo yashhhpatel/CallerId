@@ -8,11 +8,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import com.phonecalltrue.app.ui.theme.AppDimens
+import com.phonecalltrue.app.ui.theme.PastelAvatarPalette
+import com.phonecalltrue.app.ui.theme.PastelAvatarTextColor
 
 /**
  * Plain gray silhouette avatar, matching the reference app's neutral contact/call
@@ -37,5 +41,25 @@ fun InitialsAvatar(
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.size(size * 0.6f)
         )
+    }
+}
+
+/** Pastel letter avatar used for Region rows, matching the reference video. */
+@Composable
+fun LetterAvatar(
+    name: String,
+    seed: Int,
+    modifier: Modifier = Modifier,
+    size: Dp = AppDimens.avatarSizeS
+) {
+    val color = PastelAvatarPalette[Math.floorMod(seed, PastelAvatarPalette.size)]
+    val initial = name.trim().firstOrNull()?.uppercaseChar()?.toString() ?: "#"
+    Box(
+        modifier = modifier
+            .size(size)
+            .background(color, CircleShape),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text = initial, color = PastelAvatarTextColor, fontWeight = FontWeight.SemiBold)
     }
 }

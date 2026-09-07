@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import com.phonecalltrue.app.ui.components.AdBanner
 import com.phonecalltrue.app.ui.components.DetailTopBar
 import com.phonecalltrue.app.ui.components.PrimaryButton
 import com.phonecalltrue.app.ui.theme.AppDimens
@@ -61,6 +62,8 @@ fun BackupScreen(onBack: () -> Unit) {
                 },
                 modifier = Modifier.padding(top = AppDimens.spaceL)
             )
+
+            AdBanner(modifier = Modifier.padding(top = AppDimens.spaceL))
 
             Text(
                 text = "Google Drive Settings",

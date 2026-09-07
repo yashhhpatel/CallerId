@@ -39,11 +39,18 @@ fun AboutScreen(onBack: () -> Unit) {
             Text("Phone Call True", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = AppDimens.spaceM))
             Text("Version 9.10.28", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text(
-                text = "Phone Call True app has arrived to replace your old phone dialer & bring your calling experience to the next level! Caller ID is highly customizable but easy to use.",
+                text = "Caller ID App has arrived to replace your old phone & bring your calling experience to the next level!",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = AppDimens.spaceL)
+            )
+            Text(
+                text = "Caller ID is highly customizable but easy to use. With Dialer, users can add calls, see contacts, add a reminder for the call, send a message when you are not able to take calls, merge calls with the conference call, swap calls and split from the conference.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = AppDimens.spaceM)
             )
         }
     }

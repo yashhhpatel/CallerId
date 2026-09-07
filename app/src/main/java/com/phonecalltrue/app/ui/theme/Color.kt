@@ -36,3 +36,10 @@ val AvatarPalette = listOf(
     Color(0xFF1565F5), Color(0xFFE0403B), Color(0xFFF5A623), Color(0xFF1FAE5D),
     Color(0xFF8B5CF6), Color(0xFFEC4899), Color(0xFF06B6D4), Color(0xFFF97316)
 )
+
+/** Soft pastel palette for region-name letter avatars, matching the reference video. */
+val PastelAvatarPalette = listOf(
+    Color(0xFFF3E0B5), Color(0xFFBFE3C6), Color(0xFFD5CCF0), Color(0xFFC9E8B0),
+    Color(0xFFB8E0EA), Color(0xFFF6D9C4), Color(0xFFE8C7DE), Color(0xFFCFE0F5)
+)
+val PastelAvatarTextColor = Color(0xFF3A3A3A)
