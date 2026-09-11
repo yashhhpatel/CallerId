@@ -37,7 +37,7 @@ fun AboutScreen(onBack: () -> Unit) {
                 Icon(Icons.Filled.Phone, contentDescription = null, tint = Color.White)
             }
             Text("Phone Call True", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = AppDimens.spaceM))
-            Text("Version 9.10.28", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text("Version 1.0.0", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Text(
                 text = "Caller ID App has arrived to replace your old phone & bring your calling experience to the next level!",
                 style = MaterialTheme.typography.bodyMedium,

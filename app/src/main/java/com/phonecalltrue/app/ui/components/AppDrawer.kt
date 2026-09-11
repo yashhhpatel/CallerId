@@ -80,7 +80,7 @@ fun AppDrawerContent(
 
             Box(modifier = Modifier.fillMaxSize()) {
                 Text(
-                    text = "Version 9.10.28",
+                    text = "Version 1.0.0",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier
